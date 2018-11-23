@@ -31,4 +31,5 @@ dependencies {
     implementation project(':FlycoTabLayout_Lib')
     implementation 'com.android.support:support-v4:28.0.0'
     implementation 'com.android.support:design:28.0.0'
+    implementation project(':MPChartLib')
 }
