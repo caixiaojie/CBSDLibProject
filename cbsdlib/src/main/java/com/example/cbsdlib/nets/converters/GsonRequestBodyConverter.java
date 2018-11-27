@@ -44,12 +44,14 @@ public class GsonRequestBodyConverter<T> implements Converter<T, RequestBody> {
         Log.i("cbsd","加密前："+gson.toJson(value));
 
         BaseReqBean baseReqBean = (BaseReqBean) value;
-        baseReqBean.setNonce_str(WechantSign.create_nonce_str());
-        baseReqBean.setTime_str(WechantSign.create_timestamp());
+        String nonce_str = WechantSign.create_nonce_str();
+        String timestamp = WechantSign.create_timestamp();
+        baseReqBean.setNonce_str(nonce_str);
+        baseReqBean.setTime_str(timestamp);
 
         Map<String,Object> map = WechantSign.objectToMap(baseReqBean);
-        map.put("nonce_str",WechantSign.create_nonce_str());
-        map.put("time_str",WechantSign.create_timestamp());
+        map.put("nonce_str",nonce_str);
+        map.put("time_str",timestamp);
         String sign = WechantSign.getSign(map, "123");
         map.put("sign",sign);
         baseReqBean.setSign(sign);
