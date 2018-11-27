@@ -3,18 +3,25 @@ package com.example.cbsdlib.nets;
 import android.content.Context;
 
 import com.example.cbsdlib.nets.converters.GsonConverterFactory;
+import com.example.cbsdlib.utils.WechantSign;
 import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.X509TrustManager;
 
+import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -33,7 +40,7 @@ public abstract class BaseNet<T> {
     private T api;
     private Class<T> clazz;
     private OkHttpClient okHttpClient;
-    private String token;
+    private String session_id;
     private String deviceId;
     private long userId;
 //    private String sfzh;
@@ -98,9 +105,39 @@ public abstract class BaseNet<T> {
                     .addInterceptor(new Interceptor() {
                         @Override
                         public Response intercept(Chain chain) throws IOException {
-                            Request request;
-                            token = getCurrentToken();
-                            request = chain.request().newBuilder().addHeader("token",token).build();
+                            //
+                            Request request = chain.request();
+                            if (request.method().equals("GET")) {
+                                String nonce_str = WechantSign.create_nonce_str();
+                                String timestamp = WechantSign.create_timestamp();
+                                //添加公共参数
+                                HttpUrl httpUrl = request.url()
+                                        .newBuilder()
+                                        .addQueryParameter("nonce_str", nonce_str)
+                                        .addQueryParameter("time_str", timestamp)
+                                        .build();
+                                //获取原有的参数
+                                Set<String> nameSet = httpUrl.queryParameterNames();
+                                ArrayList<String> nameList = new ArrayList<>();
+                                nameList.addAll(nameSet);
+                                Map<String,Object> map = new HashMap<>();
+                                for (int i = 0; i < nameList.size(); i++) {
+                                    String value = httpUrl.queryParameterValues(nameList.get(i)) != null
+                                            && httpUrl.queryParameterValues(nameList.get(i)).size() > 0 ? httpUrl.queryParameterValues(nameList.get(i)).get(0) : "";
+                                    map.put(nameList.get(i), value);
+                                }
+                                httpUrl = request.url().newBuilder()
+                                        .addQueryParameter("nonce_str", nonce_str)
+                                        .addQueryParameter("time_str", timestamp)
+                                        .addQueryParameter("sign",WechantSign.getSign(map,"123"))
+                                        .build();
+
+                                request = request.newBuilder().url(httpUrl).build();
+
+                            }
+                            //
+                            session_id = getCurrentToken();
+                            request = request.newBuilder().addHeader("session_id",session_id).build();
                             request = dealRequest(request);
                             Logger.i("request" + request);
                             Response response = null;
@@ -151,13 +188,14 @@ public abstract class BaseNet<T> {
         mCertificate = certificate;
     }
 
-    public void setToken(String token) {
-        this.token = token;
-        clear();
+
+    public String getSession_id() {
+        return session_id;
     }
 
-    public String getToken() {
-        return token;
+    public void setSession_id(String session_id) {
+        this.session_id = session_id;
+        clear();
     }
 
     public void setDeviceId(String deviceId) {

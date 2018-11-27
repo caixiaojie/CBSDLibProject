@@ -6,24 +6,39 @@ package com.example.cbsdlib.nets.example.bean;
  * Desctiption:
  */
 
-public class UserRequestBean{
-    private String strUserPhone;
-    private String strPassword;
+public class UserRequestBean extends BaseReqBean{
 
+    /**
+     * fieldName : 1121
+     * fieldValue : fieldValue
+     * sort : 1
+     */
 
-    public String getStrUserPhone() {
-        return strUserPhone;
+    private String fieldName;
+    private String fieldValue;
+    private String sort;
+
+    public String getFieldName() {
+        return fieldName;
     }
 
-    public void setStrUserPhone(String strUserPhone) {
-        this.strUserPhone = strUserPhone;
+    public void setFieldName(String fieldName) {
+        this.fieldName = fieldName;
     }
 
-    public String getStrPassword() {
-        return strPassword;
+    public String getFieldValue() {
+        return fieldValue;
     }
 
-    public void setStrPassword(String strPassword) {
-        this.strPassword = strPassword;
+    public void setFieldValue(String fieldValue) {
+        this.fieldValue = fieldValue;
+    }
+
+    public String getSort() {
+        return sort;
+    }
+
+    public void setSort(String sort) {
+        this.sort = sort;
     }
 }

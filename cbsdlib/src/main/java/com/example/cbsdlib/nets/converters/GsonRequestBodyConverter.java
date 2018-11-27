@@ -1,5 +1,9 @@
 package com.example.cbsdlib.nets.converters;
 
+import android.util.Log;
+
+import com.example.cbsdlib.nets.example.bean.BaseReqBean;
+import com.example.cbsdlib.utils.WechantSign;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonWriter;
@@ -8,6 +12,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.nio.charset.Charset;
+import java.util.Map;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -35,11 +40,31 @@ public class GsonRequestBodyConverter<T> implements Converter<T, RequestBody> {
 
     @Override
     public RequestBody convert(T value) throws IOException {
+        //加密开始
+        Log.i("cbsd","加密前："+gson.toJson(value));
+
+        BaseReqBean baseReqBean = (BaseReqBean) value;
+        baseReqBean.setNonce_str(WechantSign.create_nonce_str());
+        baseReqBean.setTime_str(WechantSign.create_timestamp());
+
+        Map<String,Object> map = WechantSign.objectToMap(baseReqBean);
+        map.put("nonce_str",WechantSign.create_nonce_str());
+        map.put("time_str",WechantSign.create_timestamp());
+        String sign = WechantSign.getSign(map, "123");
+        map.put("sign",sign);
+        baseReqBean.setSign(sign);
+        Log.i("cbsd","加密后："+gson.toJson(baseReqBean));
+        //加密结束
+
         Buffer buffer = new Buffer();
         Writer writer = new OutputStreamWriter(buffer.outputStream(), UTF_8);
         JsonWriter jsonWriter = gson.newJsonWriter(writer);
-        adapter.write(jsonWriter, value);
+        adapter.write(jsonWriter, (T) baseReqBean);
+//        adapter.write(jsonWriter, value);
         jsonWriter.close();
+
+
+
         return RequestBody.create(MEDIA_TYPE, buffer.readByteString());
     }
 

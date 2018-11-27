@@ -52,6 +52,7 @@
             <flag name="start" value="0x00800003" />
             <flag name="end" value="0x00800005" />
         </attr>
+
     </declare-styleable>
 
     <declare-styleable name="SwipeBackLayout">
@@ -65,6 +66,10 @@
         <attr name="shadow_left" format="reference"/>
         <attr name="shadow_right" format="reference"/>
         <attr name="shadow_bottom" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="NineGridLayout">
+        <attr name="sapcing" format="dimension" />
     </declare-styleable>
 
     <attr name="SwipeBackLayoutStyle" format="reference"/>

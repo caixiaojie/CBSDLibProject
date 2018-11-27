@@ -9,14 +9,22 @@ package com.example.cbsdlib.nets.example.bean;
 public class UserRespBean {
 
     /**
-     * session_id : 988da26f1efd46ee8597d9c42471a8fa
-     * userinfo : {"strUserinfoId":"5428b7298fdc416d93f0a6e5269aa297","strUserPhone":"18408249795","strPassword":"*******","strRegisterTime":"2018-04-27 10:43:28","strNickName":"cl","strUserType":"0","iState":0,"iIsDelete":0}
+     * cUser : {"id":"11","userName":"123456","userPassword":"*******","nickName":"测试用户","sex":null,"unitId":null,"userType":0,"userEmil":null,"userPhone":null,"userFax":null,"userMovePhone":null,"istate":0,"iDelete":0,"createTime":null,"updateTime":null,"deleteTime":null}
+     * session_id : 366dca6f3d204caf9f04ba07fa8e4c9b
      * strImgRootPath : http://linux.fushoukeji.com:88/picpath/ulabor/
      */
 
+    private CUserBean cUser;
     private String session_id;
-    private UserinfoBean userinfo;
     private String strImgRootPath;
+
+    public CUserBean getCUser() {
+        return cUser;
+    }
+
+    public void setCUser(CUserBean cUser) {
+        this.cUser = cUser;
+    }
 
     public String getSession_id() {
         return session_id;
@@ -24,14 +32,6 @@ public class UserRespBean {
 
     public void setSession_id(String session_id) {
         this.session_id = session_id;
-    }
-
-    public UserinfoBean getUserinfo() {
-        return userinfo;
-    }
-
-    public void setUserinfo(UserinfoBean userinfo) {
-        this.userinfo = userinfo;
     }
 
     public String getStrImgRootPath() {
@@ -42,89 +42,169 @@ public class UserRespBean {
         this.strImgRootPath = strImgRootPath;
     }
 
-    public static class UserinfoBean {
+    public static class CUserBean {
         /**
-         * strUserinfoId : 5428b7298fdc416d93f0a6e5269aa297
-         * strUserPhone : 18408249795
-         * strPassword : *******
-         * strRegisterTime : 2018-04-27 10:43:28
-         * strNickName : cl
-         * strUserType : 0
-         * iState : 0
-         * iIsDelete : 0
+         * id : 11
+         * userName : 123456
+         * userPassword : *******
+         * nickName : 测试用户
+         * sex : null
+         * unitId : null
+         * userType : 0
+         * userEmil : null
+         * userPhone : null
+         * userFax : null
+         * userMovePhone : null
+         * istate : 0
+         * iDelete : 0
+         * createTime : null
+         * updateTime : null
+         * deleteTime : null
          */
 
-        private String strUserinfoId;
-        private String strUserPhone;
-        private String strPassword;
-        private String strRegisterTime;
-        private String strNickName;
-        private String strUserType;
-        private int iState;
-        private int iIsDelete;
+        private String id;
+        private String userName;
+        private String userPassword;
+        private String nickName;
+        private Object sex;
+        private Object unitId;
+        private int userType;
+        private Object userEmil;
+        private Object userPhone;
+        private Object userFax;
+        private Object userMovePhone;
+        private int istate;
+        private int iDelete;
+        private Object createTime;
+        private Object updateTime;
+        private Object deleteTime;
 
-        public String getStrUserinfoId() {
-            return strUserinfoId;
+        public String getId() {
+            return id;
         }
 
-        public void setStrUserinfoId(String strUserinfoId) {
-            this.strUserinfoId = strUserinfoId;
+        public void setId(String id) {
+            this.id = id;
         }
 
-        public String getStrUserPhone() {
-            return strUserPhone;
+        public String getUserName() {
+            return userName;
         }
 
-        public void setStrUserPhone(String strUserPhone) {
-            this.strUserPhone = strUserPhone;
+        public void setUserName(String userName) {
+            this.userName = userName;
         }
 
-        public String getStrPassword() {
-            return strPassword;
+        public String getUserPassword() {
+            return userPassword;
         }
 
-        public void setStrPassword(String strPassword) {
-            this.strPassword = strPassword;
+        public void setUserPassword(String userPassword) {
+            this.userPassword = userPassword;
         }
 
-        public String getStrRegisterTime() {
-            return strRegisterTime;
+        public String getNickName() {
+            return nickName;
         }
 
-        public void setStrRegisterTime(String strRegisterTime) {
-            this.strRegisterTime = strRegisterTime;
+        public void setNickName(String nickName) {
+            this.nickName = nickName;
         }
 
-        public String getStrNickName() {
-            return strNickName;
+        public Object getSex() {
+            return sex;
         }
 
-        public void setStrNickName(String strNickName) {
-            this.strNickName = strNickName;
+        public void setSex(Object sex) {
+            this.sex = sex;
         }
 
-        public String getStrUserType() {
-            return strUserType;
+        public Object getUnitId() {
+            return unitId;
         }
 
-        public void setStrUserType(String strUserType) {
-            this.strUserType = strUserType;
+        public void setUnitId(Object unitId) {
+            this.unitId = unitId;
         }
 
-        public int getIState() {
-            return iState;
+        public int getUserType() {
+            return userType;
         }
 
-        public void setIState(int iState) {
-            this.iState = iState;
+        public void setUserType(int userType) {
+            this.userType = userType;
         }
 
-        public int getIIsDelete() {
-            return iIsDelete;
+        public Object getUserEmil() {
+            return userEmil;
         }
 
-        public void setIIsDelete(int iIsDelete) {
-            this.iIsDelete = iIsDelete;
+        public void setUserEmil(Object userEmil) {
+            this.userEmil = userEmil;
+        }
+
+        public Object getUserPhone() {
+            return userPhone;
+        }
+
+        public void setUserPhone(Object userPhone) {
+            this.userPhone = userPhone;
+        }
+
+        public Object getUserFax() {
+            return userFax;
+        }
+
+        public void setUserFax(Object userFax) {
+            this.userFax = userFax;
+        }
+
+        public Object getUserMovePhone() {
+            return userMovePhone;
+        }
+
+        public void setUserMovePhone(Object userMovePhone) {
+            this.userMovePhone = userMovePhone;
+        }
+
+        public int getIstate() {
+            return istate;
+        }
+
+        public void setIstate(int istate) {
+            this.istate = istate;
+        }
+
+        public int getIDelete() {
+            return iDelete;
+        }
+
+        public void setIDelete(int iDelete) {
+            this.iDelete = iDelete;
+        }
+
+        public Object getCreateTime() {
+            return createTime;
+        }
+
+        public void setCreateTime(Object createTime) {
+            this.createTime = createTime;
+        }
+
+        public Object getUpdateTime() {
+            return updateTime;
+        }
+
+        public void setUpdateTime(Object updateTime) {
+            this.updateTime = updateTime;
+        }
+
+        public Object getDeleteTime() {
+            return deleteTime;
+        }
+
+        public void setDeleteTime(Object deleteTime) {
+            this.deleteTime = deleteTime;
         }
     }
 }
