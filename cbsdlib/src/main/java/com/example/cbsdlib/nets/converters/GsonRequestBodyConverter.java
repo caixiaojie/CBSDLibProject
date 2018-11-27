@@ -50,8 +50,6 @@ public class GsonRequestBodyConverter<T> implements Converter<T, RequestBody> {
         baseReqBean.setTime_str(timestamp);
 
         Map<String,Object> map = WechantSign.objectToMap(baseReqBean);
-        map.put("nonce_str",nonce_str);
-        map.put("time_str",timestamp);
         String sign = WechantSign.getSign(map, "123");
         map.put("sign",sign);
         baseReqBean.setSign(sign);

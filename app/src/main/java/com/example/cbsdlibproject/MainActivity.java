@@ -36,15 +36,13 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void init(Bundle saveInstanceState) {
         userRequestBean = new UserRequestBean();
-        userRequestBean.setFieldName("111");
-        userRequestBean.setFieldValue("123456");
+        userRequestBean.setAa("123456");
+        userRequestBean.setAA("111");
+        userRequestBean.setBb("111");
+        userRequestBean.setBB("111");
+        userRequestBean.setCc("111");
+        userRequestBean.setCC("111");
         userRequestBean.setSort("1");
-//        userRequestBean.setNonce_str(WechantSign.create_nonce_str());
-//        userRequestBean.setTime_str(WechantSign.create_timestamp());
-//        Map<String, Object> map = new HashMap<>();
-//        map = WechantSign.objectToMap(userRequestBean);
-//        String sign = WechantSign.getSign(map, "123");
-//        userRequestBean.setSign(sign);
     }
     @OnClick({R.id.btn,R.id.btn1})
     public void click(View view) {

@@ -54,6 +54,9 @@ public class WechantSign {
         }
         String result = sb.toString();
         result += "key=" + key;
+        //test
+//        result = "aa=123456&AA=111&nonce_str=cdd8ae5a-a743-4b60-b66e-3b6716aae724&sort=1&time_str=1543303113&key=123";
+
         System.out.println(result);
         result = MD5.MD5Encode(result,"").toUpperCase();
         System.out.println(result);
@@ -137,6 +140,19 @@ public class WechantSign {
             return null;
         }
         Map<String, Object> map = new HashMap<String, Object>();
+
+        //获取父类属性
+        Object nonce_str = getFieldValue(obj, "nonce_str");
+        Object time_str = getFieldValue(obj, "time_str");
+        if (null != nonce_str) {
+            map.put("nonce_str", nonce_str);
+        }
+        if (null != time_str) {
+            map.put("time_str", time_str);
+        }
+
+
+
         Field[] declaredFields = obj.getClass().getDeclaredFields();
         for (Field field : declaredFields) {
             field.setAccessible(true);
@@ -177,6 +193,37 @@ public class WechantSign {
 
         return obj;
     }
+
+    public static Object getFieldValue(Object object, String fieldName) {
+        // 根据 对象和属性名通过反射 调用上面的方法获取 Field对象
+         Field field = getDeclaredField(object, fieldName);
+         // 抑制Java对其的检查
+         field.setAccessible(true);
+         try {
+             // 获取 object 中 field 所代表的属性值
+              return field.get(object);
+         } catch (Exception e) {
+             e.printStackTrace();
+         }		return null;
+    }
+
+
+    public static Field getDeclaredField(Object object, String fieldName) {
+        Field field = null;
+        Class<?> clazz = object.getClass();
+        for (; clazz != Object.class; clazz = clazz.getSuperclass()) {
+            try {
+                field = clazz.getDeclaredField(fieldName);
+                return field;
+            } catch (Exception e) {
+                // 这里甚么都不要做！并且这里的异常必须这样写，不能抛出去。
+                // 如果这里的异常打印或者往外抛，则就不会执行clazz =
+                // clazz.getSuperclass(),最后就不会进入到父类中了
+                 }
+        }
+        return null;
+    }
+
 
 
 }
