@@ -2,6 +2,9 @@ package com.example.cbsdlib.utils;
 
 import android.util.Log;
 
+import com.example.cbsdlib.nets.example.bean.BaseReqBean;
+import com.google.gson.Gson;
+
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -11,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Formatter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -38,10 +42,15 @@ public class WechantSign {
 	 * @param key
 	 */
 	public static String getSign(Map<String,Object> map, String key){
-		ArrayList<String> list = new ArrayList<String>();
+        ArrayList<Object> list = new ArrayList<Object>();
 		
-        for(Map.Entry<String,Object> entry:map.entrySet()){
+        for(Map.Entry<String,Object> entry: map.entrySet()){
             if(!"".equals(entry.getValue()) && !"serialVersionUID".equals(entry.getKey()) && entry.getValue() != null){
+                if (entry.getValue() instanceof List) {
+                    String strs = new Gson().toJson(entry.getValue());
+                    list.add(entry.getKey() + "=" + strs + "&");
+                    continue;
+                }
             	list.add(entry.getKey() + "=" + entry.getValue() + "&");
             }
         }
@@ -54,15 +63,13 @@ public class WechantSign {
         }
         String result = sb.toString();
         result += "key=" + key;
-        //test
-//        result = "aa=123456&AA=111&nonce_str=cdd8ae5a-a743-4b60-b66e-3b6716aae724&sort=1&time_str=1543303113&key=123";
 
         System.out.println(result);
         result = MD5.MD5Encode(result,"").toUpperCase();
         System.out.println(result);
         return result;
     }
-	
+
 	/**
 	 * 
 	 * @功能：微信授权签名

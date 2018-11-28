@@ -14,7 +14,9 @@ import com.example.cbsdlib.nets.exceptions.ApiException;
 import com.example.cbsdlib.ui.activities.BaseActivity;
 import com.example.cbsdlib.utils.WechantSign;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -36,12 +38,13 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void init(Bundle saveInstanceState) {
         userRequestBean = new UserRequestBean();
+        List<String> strs = new ArrayList<>();
+        strs.add("11q");
+        strs.add("12z");
+        strs.add("13c");
         userRequestBean.setAa("123456");
         userRequestBean.setAA("111");
-        userRequestBean.setBb("111");
-        userRequestBean.setBB("111");
-        userRequestBean.setCc("111");
-        userRequestBean.setCC("111");
+        userRequestBean.setStrs(strs);
         userRequestBean.setSort("1");
     }
     @OnClick({R.id.btn,R.id.btn1})

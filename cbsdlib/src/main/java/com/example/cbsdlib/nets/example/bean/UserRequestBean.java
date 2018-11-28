@@ -1,5 +1,7 @@
 package com.example.cbsdlib.nets.example.bean;
 
+import java.util.List;
+
 /**
  * Author:Ariana Wong
  * Date: 2017-12-18
@@ -16,43 +18,28 @@ public class UserRequestBean extends BaseReqBean{
 
     private String aa;
     private String AA;
-    private String bb;
-    private String BB;
-    private String cc;
-    private String CC;
+    private List<String> strs;
+//    private String [] strs ;
+
     private String sort;
 
-    public String getBb() {
-        return bb;
+
+    public List<String> getStrs() {
+        return strs;
     }
 
-    public void setBb(String bb) {
-        this.bb = bb;
+    public void setStrs(List<String> strs) {
+        this.strs = strs;
     }
 
-    public String getBB() {
-        return BB;
-    }
 
-    public void setBB(String BB) {
-        this.BB = BB;
-    }
-
-    public String getCc() {
-        return cc;
-    }
-
-    public void setCc(String cc) {
-        this.cc = cc;
-    }
-
-    public String getCC() {
-        return CC;
-    }
-
-    public void setCC(String CC) {
-        this.CC = CC;
-    }
+//    public String[] getStrs() {
+//        return strs;
+//    }
+//
+//    public void setStrs(String[] strs) {
+//        this.strs = strs;
+//    }
 
     public String getSort() {
         return sort;
