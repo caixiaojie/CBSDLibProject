@@ -1,14 +1,18 @@
 package com.example.cbsdlib.ui.activities;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.IntRange;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.example.cbsdlib.R;
+import com.gyf.barlibrary.ImmersionBar;
 import com.jaeger.library.StatusBarUtil;
 
 import butterknife.ButterKnife;
@@ -18,7 +22,11 @@ import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
  *
  *created by Damon on 2017/5/27 11:35
  *
- *description: 
+ *description:
+ * // 所有子类都将继承这些相同的属性,请在设置界面之后设置
+ ImmersionBar.with(this)
+ .statusBarDarkFont(true, 0.2f) //原理：如果当前设备支持状态栏字体变色，会设置状态栏字体为黑色，如果当前设备不支持状态栏字体变色，会使当前状态栏加上透明度，否则不执行透明度
+ .init();
  *
  */
 
@@ -27,6 +35,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BGASwipe
     private ProgressDialog progressDialog;
     protected BGASwipeBackHelper mSwipeBackHelper;
     protected Toolbar mToolbar;
+    private InputMethodManager mInputMethodManager;
+
 
 
     @Override
@@ -36,7 +46,19 @@ public abstract class BaseActivity extends AppCompatActivity implements BGASwipe
         setContentView(getContentView());
         ButterKnife.bind(this);
         init(savedInstanceState);
+        //初始化沉浸式
+        if (isImmersionBarEnabled()) {
+            initImmersionBar();
+        }
+        //设置监听
+        setListener();
+
 //        setSwipeBackEnable(false);
+    }
+
+    protected void initImmersionBar() {
+        //在BaseActivity里初始化
+        ImmersionBar.with(this).navigationBarColor(R.color.colorPrimary).init();
     }
 
     private void initSwipeBackFinish() {
@@ -124,5 +146,38 @@ public abstract class BaseActivity extends AppCompatActivity implements BGASwipe
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //必须调用该方法，防止内存泄漏
+    }
 
+    protected void setListener() {
+    }
+
+    /**
+     * 是否可以使用沉浸式
+     * Is immersion bar enabled boolean.
+     *
+     * @return the boolean
+     */
+    protected boolean isImmersionBarEnabled() {
+        return true;
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        hideSoftKeyBoard();
+    }
+
+    public void hideSoftKeyBoard() {
+        View localView = getCurrentFocus();
+        if (this.mInputMethodManager == null) {
+            this.mInputMethodManager = ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE));
+        }
+        if ((localView != null) && (this.mInputMethodManager != null)) {
+            this.mInputMethodManager.hideSoftInputFromWindow(localView.getWindowToken(), 2);
+        }
+    }
 }

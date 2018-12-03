@@ -1,1 +1,1 @@
-include ':app', ':cbsdlib', ':FlycoTabLayout_Lib', ':MPChartLib'
+include ':app', ':cbsdlib', ':FlycoTabLayout_Lib', ':MPChartLib', ':refresh-layout'

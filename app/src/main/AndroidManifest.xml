@@ -25,6 +25,9 @@
             android:value="portrait|landscape" />
 
         <activity android:name=".MainActivity">
+
+        </activity>
+        <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
