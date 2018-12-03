@@ -12,6 +12,8 @@
             <option value="$PROJECT_DIR$/MPChartLib" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/cbsdlib" />
+            <option value="$PROJECT_DIR$/refresh-footer" />
+            <option value="$PROJECT_DIR$/refresh-header" />
             <option value="$PROJECT_DIR$/refresh-layout" />
           </set>
         </option>
