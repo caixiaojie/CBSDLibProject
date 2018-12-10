@@ -1,5 +1,6 @@
 package com.example.cbsdlibproject;
 
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ import com.example.cbsdlib.nets.example.bean.UserRequestBean;
 import com.example.cbsdlib.nets.example.bean.UserRespBean;
 import com.example.cbsdlib.nets.exceptions.ApiException;
 import com.example.cbsdlib.ui.activities.BaseActivity;
+import com.example.cbsdlib.utils.IOSPopupDialog;
 import com.example.cbsdlib.utils.ToastUtil;
 import com.example.cbsdlib.utils.WechantSign;
 
@@ -29,6 +31,12 @@ public class MainActivity extends BaseActivity {
     Button btn;
     @BindView(R.id.btn1)
     Button btn1;
+    @BindView(R.id.dialog1)
+    Button dialog1;
+    @BindView(R.id.dialog2)
+    Button dialog2;
+    @BindView(R.id.dialog3)
+    Button dialog3;
     private UserRequestBean userRequestBean;
 
     @Override
@@ -48,10 +56,21 @@ public class MainActivity extends BaseActivity {
         userRequestBean.setStrs(strs);
         userRequestBean.setSort("1");
     }
-    @OnClick({R.id.btn,R.id.btn1})
+    @OnClick({R.id.btn,R.id.btn1,R.id.dialog1,R.id.dialog2,R.id.dialog3})
     public void click(View view) {
         switch (view.getId()) {
             case R.id.btn:
+                IOSPopupDialog.create(MainActivity.this, "提示", "你是煞笔吗?", "是", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                }, "否", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                },true,true,false).show();
                 CBSDService.getInstance().userLogin(userRequestBean).subscribe(new AbsAPICallback<UserRespBean>() {
                     @Override
                     public void onNext(UserRespBean userRespBean) {
@@ -65,6 +84,17 @@ public class MainActivity extends BaseActivity {
                 });
                 break;
             case R.id.btn1:
+                IOSPopupDialog.create(MainActivity.this, "提示", "你是煞笔吗?", "是", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                }, "否", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                },true,true,true).show();
                 CBSDService.getInstance().detail().subscribe(new AbsAPICallback<DetailRespBean>() {
                     @Override
                     public void onNext(DetailRespBean userRespBean) {
@@ -76,6 +106,35 @@ public class MainActivity extends BaseActivity {
                         ToastUtil.showShort(ex.getMessage());
                     }
                 });
+                break;
+            case R.id.dialog1:
+                IOSPopupDialog.create(MainActivity.this, 0, R.string.msg, R.string.confirm, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                }, R.string.cancel, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                },true,true,false).show();
+                break;
+            case R.id.dialog2:
+                IOSPopupDialog.create(MainActivity.this, 0, R.string.msg, R.string.confirm, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                }, 0, null,true,true,false).show();
+                break;
+            case R.id.dialog3:
+                IOSPopupDialog.create(MainActivity.this, 0, R.string.msg, 0, null, 0, null, true, true, false, new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialogInterface) {
+
+                    }
+                }).show();
                 break;
         }
 

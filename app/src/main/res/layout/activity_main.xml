@@ -20,5 +20,22 @@
         android:text="测试GET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
+    <Button
+        android:id="@+id/dialog1"
+        android:text="dialog1"
+        android:textAllCaps="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/dialog2"
+        android:text="dialog2"
+        android:textAllCaps="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/dialog3"
+        android:text="dialog3"
+        android:textAllCaps="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>
