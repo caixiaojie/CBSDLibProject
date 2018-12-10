@@ -1,7 +1,12 @@
 package com.example.cbsdlib.nets;
 
+import android.app.Activity;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.widget.Toast;
 
+import com.example.cbsdlib.CBSDApplication;
 import com.example.cbsdlib.nets.converters.GsonConverterFactory;
 import com.example.cbsdlib.utils.WechantSign;
 import com.orhanobut.logger.Logger;
@@ -74,7 +79,7 @@ public abstract class BaseNet<T> {
         return api;
     }
 
-    private void initHttpClient(Context context) {
+    private void initHttpClient(final Context context) {
         if (okHttpClient == null) {
             OkHttpClient.Builder builder = new OkHttpClient.Builder()
                     .readTimeout(60, TimeUnit.SECONDS)//设置读取超时时间
@@ -105,6 +110,15 @@ public abstract class BaseNet<T> {
                     .addInterceptor(new Interceptor() {
                         @Override
                         public Response intercept(Chain chain) throws IOException {
+//                            if (!isNetworkConnected(context)) {
+//
+//                                ((Activity)context).runOnUiThread(new Runnable() {
+//                                    @Override
+//                                    public void run() {
+//                                        Toast.makeText(context, "当前无网络!", Toast.LENGTH_SHORT).show();
+//                                    }
+//                                });
+//                            }
                             //
                             Request request = chain.request();
                             if (request.method().equals("GET")) {
@@ -217,5 +231,17 @@ public abstract class BaseNet<T> {
 
     protected Request dealRequest(Request request) {
         return request;
+    }
+
+    public boolean isNetworkConnected(Context context) {
+        if (context != null) {
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+            if (mNetworkInfo != null) {
+                return mNetworkInfo.isConnected();
+            }
+        }
+        return false;
     }
 }

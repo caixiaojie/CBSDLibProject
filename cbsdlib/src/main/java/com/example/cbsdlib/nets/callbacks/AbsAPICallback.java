@@ -28,115 +28,20 @@ import rx.Subscriber;
  *description: 
  *
  */
-public abstract class AbsAPICallback<T> extends Subscriber<T> {
-
-    //出错提示
-    public final String networkMsg = "服务器开小差";
-    public final String parseMsg = "数据解析出错";
-    public final String unknownMsg = "未知错误";
-
-    protected AbsAPICallback() {
-    }
-
-
-    @Override
-    public void onError(Throwable e) {
-        e = getThrowable(e);
-        if (e instanceof HttpException) {//HTTP错误
-            if (((HttpException) e).code() == -1) {
-                resultError((HttpException) e);
-            } else if (((HttpException) e).code() == 401){
-                resultError((HttpException) e);
-            } else{
-                error(e, ((HttpException) e).code(), networkMsg);
-            }
-        } else if (e instanceof SocketTimeoutException) {
-            error(e, 12002, getSocketExceotion());
-        } else if (e instanceof ResultException) {//服务器返回的错误
-            ResultException resultException = (ResultException) e;
-            error(e, resultException.getErrCode(), resultException.getMessage());
-        } else if (e instanceof JsonParseException || e instanceof JSONException || e instanceof ParseException) {//解析错误
-            error(e, ApiException.PARSE_ERROR, parseMsg);
-        } else {//未知错误
-            error(e, ApiException.UNKNOWN, unknownMsg);
-        }
-    }
-
-    private String getSocketExceotion() {
-        return "访问超时";
-    }
-
-    public boolean isNetworkConnected(Context context) {
-        if (context != null) {
-            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
-                    .getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
-            if (mNetworkInfo != null) {
-                return mNetworkInfo.isConnected();
-            }
-        }
-        return false;
-    }
-
-    private Throwable getThrowable(Throwable e) {
-        Throwable throwable = e;
-        while (throwable.getCause() != null) {
-            e = throwable;
-            throwable = throwable.getCause();
-        }
-        return e;
-    }
-
-    private void resultError(HttpException e) {
-        if (e.code() == 401) {
-            try {
-                Context currentActivity = ActivityUtil.getCurrentActivity();
-                if (currentActivity != null) {
-                    Intent intent = new Intent(currentActivity, Class.forName(""));
-                    CBSDApplication.getInstance().exit();
-                    currentActivity.startActivity(intent);
-                    Toast.makeText(currentActivity, "登录标识过期，请重新登录", Toast.LENGTH_SHORT).show();
-                }
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
-        }
-    }
-
-    /**
-     * 错误信息回调
-     */
-    private void error(Throwable e, int errorCode, String errorMsg) {
-        ApiException ex = new ApiException(e, errorCode);
-        LogUtil.d(e.getMessage());
-        ex.setmsg(errorMsg);
-        onResultError(ex);
-        if (errorCode == -1) {
-            login();
-        }
-    }
-
-    /**
-     * 服务器返回的错误
-     */
-    protected abstract void onResultError(ApiException ex);
-
-    protected void login(){
-        try {
-            Context currentActivity = ActivityUtil.getCurrentActivity();
-            if (currentActivity != null) {
-                Intent intent = new Intent(currentActivity, Class.forName("com.example.retrofitrxjavademo.Login2Activity"));
-                CBSDApplication.getInstance().exit();
-                currentActivity.startActivity(intent);
-                Toast.makeText(currentActivity, "登录标识过期，请重新登录", Toast.LENGTH_SHORT).show();
-            }
-        } catch (Exception e1) {
-            e1.printStackTrace();
-        }
-    }
+public abstract class AbsAPICallback<T> extends ErrorSubscriber<T> {
 
     @Override
     public void onCompleted() {
+
     }
 
+    @Override
+    protected void onError(ApiException ex) {
+
+    }
+
+    @Override
+    public void onNext(T t) {
+
+    }
 }

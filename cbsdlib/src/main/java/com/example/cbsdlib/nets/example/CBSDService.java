@@ -1,6 +1,8 @@
 package com.example.cbsdlib.nets.example;
 
 
+import com.example.cbsdlib.nets.callbacks.HttpResponseFunc;
+import com.example.cbsdlib.nets.callbacks.ServerResponseFunc;
 import com.example.cbsdlib.nets.example.bean.DetailRespBean;
 import com.example.cbsdlib.nets.example.bean.UserRequestBean;
 import com.example.cbsdlib.nets.example.bean.UserRespBean;
@@ -32,13 +34,21 @@ public class CBSDService {
 
     //登录
     public Observable<UserRespBean> userLogin(UserRequestBean req) {
-        return mNet.getApi().login(req).subscribeOn(Schedulers.io())
+        return mNet.getApi().login(req)
+                .map(new ServerResponseFunc<UserRespBean>())
+                .onErrorResumeNext(new HttpResponseFunc<UserRespBean>())
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
     //详细
     public Observable<DetailRespBean> detail() {
         return mNet.getApi().detail().subscribeOn(Schedulers.io())
+                .map(new ServerResponseFunc<DetailRespBean>())
+                .onErrorResumeNext(new HttpResponseFunc<DetailRespBean>())
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 

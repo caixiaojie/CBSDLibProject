@@ -1,2 +1,3 @@
 include ':app', ':cbsdlib', ':FlycoTabLayout_Lib', ':MPChartLib'
 include ':refresh-layout', ':refresh-header', ':refresh-footer'
+include ':library'

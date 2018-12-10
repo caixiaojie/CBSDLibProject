@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.example.cbsdlib.nets.entities.CBSDResultEntity;
 import com.example.cbsdlib.nets.exceptions.ResultException;
+import com.example.cbsdlib.nets.exceptions.ServerException;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 
@@ -49,9 +50,9 @@ public class GsonResponseBodyConverter<T> implements Converter<ResponseBody, T> 
                 return null;
             } else {
                 if(resultModel.getData()==null){
-                    throw new ResultException(resultModel.getCode(), resultModel.getMsg());
+                    throw new ServerException(resultModel.getCode(),resultModel.getMsg());
                 }else{
-                    throw new ResultException(resultModel.getCode(), resultModel.getMsg(), resultModel.getData().toString());
+                    throw new ServerException(resultModel.getCode(),resultModel.getMsg());
                 }
 
 

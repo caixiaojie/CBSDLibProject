@@ -63,4 +63,10 @@ public class CBSDApplication extends Application {
             }
         }
     }
+    public Activity getTaskTop() {
+        if (activities.size() > 0) {
+            return activities.get(activities.size() - 1);
+        }
+        return null;
+    }
 }
