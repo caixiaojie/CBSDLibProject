@@ -23,7 +23,7 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.example.cbsdlib.utils.GlideUtils;
+import com.example.cbsdlib.imageloader.ImageLoaderV4;
 
 
 public class CommonHolder extends RecyclerView.ViewHolder{
@@ -107,19 +107,19 @@ public class CommonHolder extends RecyclerView.ViewHolder{
 
     public CommonHolder setImage(int viewId, String imgUrl) {
         ImageView view = getView(viewId);
-        GlideUtils.loadImage(mContext, imgUrl, view);
+        ImageLoaderV4.getInstance().displayImage(mContext, imgUrl, view);
         return this;
     }
 
     public CommonHolder setCircleImage(int viewId, String imgUrl) {
         ImageView view = getView(viewId);
-        GlideUtils.loadCircleImage(mContext, imgUrl, view);
+        ImageLoaderV4.getInstance().displayImage(mContext, imgUrl, view);
         return this;
     }
 
     public CommonHolder setImage(int viewId, byte[] bytes){
         ImageView view = getView(viewId);
-        GlideUtils.loadBytesImage(mContext,bytes,view);
+        ImageLoaderV4.getInstance().displayImage(mContext, bytes, view);
         return this;
     }
 

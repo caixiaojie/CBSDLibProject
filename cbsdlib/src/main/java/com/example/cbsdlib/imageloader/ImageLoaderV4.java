@@ -724,5 +724,10 @@ public class ImageLoaderV4 implements IImageLoaderClient {
         }
     }
 
-
+    @Override
+    public void displayImage(Context mContext, byte[] bytes, ImageView imageView) {
+        if (client != null) {
+            client.displayImage(mContext,bytes,imageView);
+        }
+    }
 }

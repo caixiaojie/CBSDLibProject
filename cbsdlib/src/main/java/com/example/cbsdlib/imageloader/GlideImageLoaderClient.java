@@ -330,6 +330,8 @@ public class GlideImageLoaderClient implements IImageLoaderClient {
         }).into(imageView);
     }
 
+
+
     @Override
     public void displayImage(Context context, final String url, final ImageView imageView, int defRes, final IImageLoaderListener listener) {
         GlideApp.with(context).load(url).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).placeholder(defRes).error(defRes).listener(new RequestListener<Drawable>() {
@@ -1133,6 +1135,11 @@ public class GlideImageLoaderClient implements IImageLoaderClient {
         } else {
             throw new IllegalArgumentException("thumbnailSize 的值必须在0到1之间");
         }
+    }
+
+    @Override
+    public void displayImage(Context mContext, byte[] bytes, ImageView imageView) {
+        GlideApp.with(mContext).load(bytes).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).into(imageView);
     }
 
     private Handler mMainThreadHandler;

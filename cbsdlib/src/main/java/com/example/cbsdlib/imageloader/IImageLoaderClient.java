@@ -242,4 +242,6 @@ public interface IImageLoaderClient {
     public void displayImageThumbnail(Fragment fragment, String url, float thumbnailSize, ImageView imageView);
     public void displayImageThumbnail(Activity activity, String url, float thumbnailSize, ImageView imageView);
     public void displayImageThumbnail(Context context, String url, float thumbnailSize, ImageView imageView);
+
+    public void displayImage(Context mContext, byte[] bytes, ImageView imageView);
 }

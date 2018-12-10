@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 
 import com.example.cbsdlib.R;
-import com.example.cbsdlib.utils.GlideUtils;
+import com.example.cbsdlib.imageloader.ImageLoaderV4;
 
 import java.util.List;
 import java.util.TimerTask;
@@ -255,7 +255,7 @@ public class NinePictureLayout extends ViewGroup{
     }
 
     protected void displayImage(ImageView imageView, String url){
-        GlideUtils.loadImage(mContext,url,imageView);
+        ImageLoaderV4.getInstance().displayImage(mContext, url, imageView);
     }
 
     protected void onClickImage(int position, String url, List<String> urlList){
