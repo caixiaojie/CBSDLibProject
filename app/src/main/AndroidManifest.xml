@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cbsdlibproject">
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!--//允许程序禁用键盘锁-->
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <!--允许使用PowerManager的 WakeLocks保持进程在休眠时从屏幕消失-->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <application
         android:name="com.example.cbsdlib.CBSDApplication"
         android:allowBackup="true"
@@ -25,18 +30,36 @@
             android:value="portrait|landscape" />
 
         <activity android:name=".MainActivity">
-
-        </activity>
-        <activity android:name=".HomeActivity">
-
-        </activity>
-        <activity android:name=".WeiboPracticeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".HomeActivity">
+
+        </activity>
+        <activity android:name=".WeiboPracticeActivity">
+
+        </activity>
+
+
+        <receiver android:name=".ContentReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="2147483647">
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".AiService">
+            <!--<intent-filter>-->
+                <!--<action android:name="com.caratech.ai.aiservice" />-->
+            <!--</intent-filter>-->
+        </service>
+
     </application>
 
 </manifest>

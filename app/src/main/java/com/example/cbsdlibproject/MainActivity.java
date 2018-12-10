@@ -12,6 +12,7 @@ import com.example.cbsdlib.nets.example.bean.UserRequestBean;
 import com.example.cbsdlib.nets.example.bean.UserRespBean;
 import com.example.cbsdlib.nets.exceptions.ApiException;
 import com.example.cbsdlib.ui.activities.BaseActivity;
+import com.example.cbsdlib.utils.ToastUtil;
 import com.example.cbsdlib.utils.WechantSign;
 
 import java.util.ArrayList;
@@ -58,8 +59,8 @@ public class MainActivity extends BaseActivity {
                     }
 
                     @Override
-                    protected void onResultError(ApiException ex) {
-
+                    protected void onError(ApiException ex) {
+                        ToastUtil.showShort(ex.getMessage());
                     }
                 });
                 break;
@@ -71,8 +72,8 @@ public class MainActivity extends BaseActivity {
                     }
 
                     @Override
-                    protected void onResultError(ApiException ex) {
-
+                    protected void onError(ApiException ex) {
+                        ToastUtil.showShort(ex.getMessage());
                     }
                 });
                 break;
