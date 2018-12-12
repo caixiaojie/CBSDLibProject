@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cbsdlibproject">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <!--//允许程序禁用键盘锁-->
+    <!-- //允许程序禁用键盘锁 -->
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
-    <!--允许使用PowerManager的 WakeLocks保持进程在休眠时从屏幕消失-->
+    <!-- 允许使用PowerManager的 WakeLocks保持进程在休眠时从屏幕消失 -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
         android:name="com.example.cbsdlib.CBSDApplication"
         android:allowBackup="true"
@@ -15,51 +17,53 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!--适配全面屏-->
+
+        <!-- 适配全面屏 -->
         <meta-data
             android:name="android.max_aspect"
             android:value="2.4" />
 
-        <!--适配华为（huawei）刘海屏-->
+        <!-- 适配华为（huawei）刘海屏 -->
         <meta-data
             android:name="android.notch_support"
-            android:value="true"/>
-        <!--适配小米（xiaomi）刘海屏-->
+            android:value="true" />
+        <!-- 适配小米（xiaomi）刘海屏 -->
         <meta-data
             android:name="notch.config"
             android:value="portrait|landscape" />
 
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".HomeActivity">
 
         </activity>
-        <activity android:name=".WeiboPracticeActivity">
+        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".WeiboPracticeActivity"></activity>
 
-        </activity>
-
-
-        <receiver android:name=".ContentReceiver"
+        <receiver
+            android:name=".ContentReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter android:priority="2147483647">
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.HOME" />
             </intent-filter>
         </receiver>
 
         <service android:name=".AiService">
-            <!--<intent-filter>-->
-                <!--<action android:name="com.caratech.ai.aiservice" />-->
-            <!--</intent-filter>-->
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="com.caratech.ai.aiservice" /> -->
+            <!-- </intent-filter> -->
         </service>
 
+        <activity android:name=".ZxingActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
