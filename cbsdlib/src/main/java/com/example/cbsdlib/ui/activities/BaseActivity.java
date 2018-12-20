@@ -13,7 +13,6 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.example.cbsdlib.R;
 import com.gyf.barlibrary.ImmersionBar;
-import com.jaeger.library.StatusBarUtil;
 
 import butterknife.ButterKnife;
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
@@ -115,11 +114,9 @@ public abstract class BaseActivity extends AppCompatActivity implements BGASwipe
     }
 
     protected void setStatusBarColor(@ColorInt int color) {
-        StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimary),  0);
     }
 
     protected void setStatusBarColor(@ColorInt int color,@IntRange(from = 0, to = 255) int statusBarAlpha) {
-        StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimary),  statusBarAlpha);
     }
 
 

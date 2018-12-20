@@ -3,12 +3,15 @@ package com.example.cbsdlib.nets.callbacks;
 
 import com.example.cbsdlib.nets.exceptions.ApiException;
 
-
-import rx.Observer;
-import rx.Subscriber;
+import io.reactivex.Observer;
 
 
-public abstract  class ErrorSubscriber<T> extends Subscriber<T> {
+//import rx.Observer;
+//import rx.Subscriber;
+
+
+public abstract  class ErrorSubscriber<T> implements Observer<T> {
+
 
     @Override
     public void onError(Throwable e) {

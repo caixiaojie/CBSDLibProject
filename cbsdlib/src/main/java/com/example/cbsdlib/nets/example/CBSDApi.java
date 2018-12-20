@@ -6,12 +6,12 @@ import com.example.cbsdlib.nets.example.bean.DetailRespBean;
 import com.example.cbsdlib.nets.example.bean.UserRequestBean;
 import com.example.cbsdlib.nets.example.bean.UserRespBean;
 
+import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
-import rx.Observable;
 
 /**
  * Author:Ariana Wong

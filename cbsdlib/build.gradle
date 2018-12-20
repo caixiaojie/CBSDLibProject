@@ -39,9 +39,11 @@ dependencies {
     api 'com.squareup.retrofit2:retrofit:2.1.0'
     api 'com.squareup.retrofit2:converter-gson:2.1.0'
     //Rxjava and Retrofit（Retrofit+Rx需要添加的依赖）
-    api 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
-    api 'io.reactivex:rxandroid:1.2.1'
-    api 'io.reactivex:rxjava:1.2.1'
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+//    api 'io.reactivex:rxandroid:1.2.1'
+//    api 'io.reactivex:rxjava:1.2.1'
+    api "io.reactivex.rxjava2:rxjava:${cfgs.rxjava}"
+    api "io.reactivex.rxjava2:rxandroid:${cfgs.rxandroid}"
     api 'com.yanzhenjie:permission:2.0.0-rc4'
     api 'cn.bingoogolapple:bga-swipebacklayout:1.1.7@aar'
     api 'com.chanven.lib:cptr:1.1.0'
@@ -50,13 +52,11 @@ dependencies {
     api 'com.github.bumptech.glide:glide:4.8.0'
     api 'com.github.bumptech.glide:okhttp3-integration:4.5.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
-    api 'com.jaeger.statusbarutil:library:1.4.0'
     api 'org.greenrobot:eventbus:3.1.1'
     api 'com.gyf.immersionbar:immersionbar:2.3.3-beta04'
     //腾讯bugly
     api 'com.tencent.bugly:crashreport:2.6.6.1'
     implementation files('libs/commons-codec-1.10.jar')
-
 
 
 }

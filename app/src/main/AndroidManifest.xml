@@ -32,11 +32,15 @@
             android:name="notch.config"
             android:value="portrait|landscape" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".HomeActivity"></activity>
-        <activity android:name=".WeiboPracticeActivity"></activity>
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".WeiboPracticeActivity" />
 
         <receiver
             android:name=".ContentReceiver"
@@ -57,12 +61,12 @@
             <!-- </intent-filter> -->
         </service>
 
-        <activity android:name=".ZxingActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".ZxingActivity"></activity>
+        <activity android:name=".SweetAlertDialogActivity">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        </activity>
+        <activity android:name=".PictureSelectActivity">
+
         </activity>
     </application>
 

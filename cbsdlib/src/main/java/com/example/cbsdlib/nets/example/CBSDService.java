@@ -3,13 +3,15 @@ package com.example.cbsdlib.nets.example;
 
 import com.example.cbsdlib.nets.callbacks.HttpResponseFunc;
 import com.example.cbsdlib.nets.callbacks.ServerResponseFunc;
+import com.example.cbsdlib.nets.entities.ResultTVO;
 import com.example.cbsdlib.nets.example.bean.DetailRespBean;
 import com.example.cbsdlib.nets.example.bean.UserRequestBean;
 import com.example.cbsdlib.nets.example.bean.UserRespBean;
 
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.Observable;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.Scheduler;
 
 /**
  * Author:Ariana Wong
@@ -44,7 +46,7 @@ public class CBSDService {
 
     //详细
     public Observable<DetailRespBean> detail() {
-        return mNet.getApi().detail().subscribeOn(Schedulers.io())
+        return mNet.getApi().detail()
                 .map(new ServerResponseFunc<DetailRespBean>())
                 .onErrorResumeNext(new HttpResponseFunc<DetailRespBean>())
                 .subscribeOn(Schedulers.io())

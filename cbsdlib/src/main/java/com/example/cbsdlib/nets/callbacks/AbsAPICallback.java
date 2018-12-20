@@ -18,7 +18,7 @@ import org.json.JSONException;
 
 import java.net.SocketTimeoutException;
 
-import retrofit2.adapter.rxjava.HttpException;
+import io.reactivex.disposables.Disposable;
 import rx.Subscriber;
 
 /**
@@ -31,7 +31,12 @@ import rx.Subscriber;
 public abstract class AbsAPICallback<T> extends ErrorSubscriber<T> {
 
     @Override
-    public void onCompleted() {
+    public void onSubscribe(Disposable d) {
+
+    }
+
+    @Override
+    public void onComplete() {
 
     }
 

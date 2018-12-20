@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.gyf.barlibrary.ImmersionBar;
-import com.jaeger.library.StatusBarUtil;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener;

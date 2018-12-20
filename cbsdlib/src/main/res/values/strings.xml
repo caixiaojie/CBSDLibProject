@@ -3,4 +3,12 @@
     <string name="cancel">取消</string>
     <string name="confirm">确认</string>
     <string name="msg">确认删除吗?</string>
+
+    <string name="dialog_default_title">Here\'s a message!</string>
+
+    <string name="dialog_ok">OK</string>
+
+    <string name="dialog_cancel">Cancel</string>
+
+    <string name="LOADING">Loading...</string>
 </resources>

@@ -24,6 +24,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.disposables.Disposable;
 import rx.Observer;
 
 public class MainActivity extends BaseActivity {
@@ -72,6 +73,7 @@ public class MainActivity extends BaseActivity {
                     }
                 },true,true,false).show();
                 CBSDService.getInstance().userLogin(userRequestBean).subscribe(new AbsAPICallback<UserRespBean>() {
+
                     @Override
                     public void onNext(UserRespBean userRespBean) {
 
@@ -96,6 +98,7 @@ public class MainActivity extends BaseActivity {
                     }
                 },true,true,true).show();
                 CBSDService.getInstance().detail().subscribe(new AbsAPICallback<DetailRespBean>() {
+
                     @Override
                     public void onNext(DetailRespBean userRespBean) {
 

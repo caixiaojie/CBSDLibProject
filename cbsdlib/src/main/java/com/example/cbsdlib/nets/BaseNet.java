@@ -34,7 +34,8 @@ import okhttp3.Response;
 import retrofit2.CallAdapter;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+//import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 
 /**
  * created by Damon on 2017/7/4 9:20
@@ -61,7 +62,7 @@ public abstract class BaseNet<T> {
     protected BaseNet(Context context) {
         this.context = context;
         converterFactory = GsonConverterFactory.create();
-        rxJavaCallAdapterFactory = RxJavaCallAdapterFactory.create();
+        rxJavaCallAdapterFactory = RxJava2CallAdapterFactory.create();
         clazz = getApiClazz();
     }
 
