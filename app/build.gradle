@@ -42,6 +42,7 @@ dependencies {
     implementation project(':library')
     implementation project(':zxinglibrary')
     implementation project(':picture_library')
+    implementation project(':xpop')
 
     implementation 'com.flyco.roundview:FlycoRoundView_Lib:1.1.4@aar'
     implementation 'de.hdodenhof:circleimageview:2.1.0'

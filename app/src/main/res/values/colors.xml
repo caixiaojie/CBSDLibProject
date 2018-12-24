@@ -65,4 +65,12 @@
     <color name="divider">#B6B6B6</color>
     <color name="color_c51">#f94c51</color>
     <color name="color_green">#43c117</color>
+
+    <color name="colorCircleOrLine">#50FFFFFF</color>
+
+    <color name="colorArc">#20FFFFFF</color>
+
+    <color name="colorLine">#60FFFFFF</color>
+
+    <color name="colorArcBorder">#17F1EF</color>
 </resources>
