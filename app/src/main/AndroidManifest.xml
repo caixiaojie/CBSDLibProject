@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.cbsdlibproject">
+    package="com.yjhs.cbsdlibproject">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
-        android:name="com.example.cbsdlib.CBSDApplication"
+        android:name="com.yjhs.cbsdlib.CBSDApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -32,14 +32,14 @@
             android:name="notch.config"
             android:value="portrait|landscape" />
 
-        <activity android:name=".MainActivity" >
+        <activity android:name="com.yjhs.cbsdlibproject.MainActivity" >
 
         </activity>
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".WeiboPracticeActivity" />
+        <activity android:name="com.yjhs.cbsdlibproject.HomeActivity" />
+        <activity android:name="com.yjhs.cbsdlibproject.WeiboPracticeActivity" />
 
         <receiver
-            android:name=".ContentReceiver"
+            android:name="com.yjhs.cbsdlibproject.ContentReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter android:priority="2147483647">
@@ -50,26 +50,29 @@
             </intent-filter>
         </receiver>
 
-        <service android:name=".AiService">
+        <service android:name="com.yjhs.cbsdlibproject.AiService">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="com.caratech.ai.aiservice" /> -->
             <!-- </intent-filter> -->
         </service>
 
-        <activity android:name=".ZxingActivity"></activity>
-        <activity android:name=".SweetAlertDialogActivity">
+        <activity android:name="com.yjhs.cbsdlibproject.ZxingActivity"></activity>
+        <activity android:name="com.yjhs.cbsdlibproject.SweetAlertDialogActivity">
 
         </activity>
-        <activity android:name=".PictureSelectActivity">
-
-        </activity>
-        <activity android:name=".ScanViewActivity">
+        <activity android:name="com.yjhs.cbsdlibproject.PictureSelectActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name="com.yjhs.cbsdlibproject.ScanViewActivity">
+
+        </activity>
+        <activity android:name="com.yjhs.cbsdlibproject.Test">
+
         </activity>
     </application>
 

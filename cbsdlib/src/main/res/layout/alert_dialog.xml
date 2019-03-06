@@ -147,7 +147,7 @@
 
 
 
-        <com.example.cbsdlib.weight.sweetalertdialog.SuccessTickView
+        <com.yjhs.cbsdlib.weight.sweetalertdialog.SuccessTickView
 
             android:id="@+id/success_tick"
 
@@ -219,7 +219,7 @@
 
 
 
-        <com.example.cbsdlib.weight.sweetalertdialog.ProgressWheel
+        <com.yjhs.cbsdlib.weight.sweetalertdialog.ProgressWheel
 
             android:id="@+id/progressWheel"
 
